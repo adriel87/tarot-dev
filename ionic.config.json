@@ -1,0 +1,8 @@
+{
+  "name": "tarotDev",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react",
+  "id": "73119a31"
+}
