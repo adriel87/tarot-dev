@@ -1,0 +1,29 @@
+.container{
+    background-color: var(--ion-color-elements-backgroud);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: space-around;
+    color: var(--ion-color-elements-headline);
+    text-align: center;
+}
+
+
+
+
+.button{
+    height: 100px;
+    width: 100px;
+    
+}
+
+@keyframes infinteloop {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+.icon {
+    font-size: 50px;
+    animation: infinteloop 2s infinite linear;
+}
