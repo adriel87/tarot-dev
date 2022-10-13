@@ -5,14 +5,17 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import './theme/global.css'
 import { TarotCardProvider } from './contexts/tarotCard';
+import { AuthProvider } from './contexts/auth';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
 root.render(
   <React.StrictMode>
-    <TarotCardProvider>
-      <App />
-    </TarotCardProvider>
+    <AuthProvider>
+      <TarotCardProvider>
+        <App />
+      </TarotCardProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
 

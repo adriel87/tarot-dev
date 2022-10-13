@@ -12,4 +12,9 @@ interface ContextProps{
     initCards: ()=>void,
 }
 
-export const TarotCardContext = createContext({} as ContextProps)
+const TarotCardContext = createContext({} as ContextProps)
+
+// name for developer tools
+TarotCardContext.displayName = 'TarotCardContext'
+
+export {TarotCardContext}

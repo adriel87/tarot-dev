@@ -100,6 +100,7 @@ export const TarotCardProvider : FC<Props> = ({children}) =>{
     }
 
     const initCards = () =>{
+        // TODO get data from backend
         dispatch({type:'Tarot Card - Init Cards', payload:[{
             name:'sdfa',
             description:'lasjkhdkfhjad',
