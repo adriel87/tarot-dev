@@ -1,0 +1,19 @@
+
+.ion-accordion-toggle-icon{
+    display: none;
+}
+
+.card{
+    margin: 10px auto;
+}
+
+.h2-card{
+    color: var(--ion-color-primary);
+}
+.p-card{
+    color: var(--ion-color-light);
+}
+
+.image-inverted{
+    transform: scaleY(-1);
+}

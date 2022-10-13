@@ -4,12 +4,15 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import './theme/global.css'
+import { TarotCardProvider } from './contexts/tarotCard';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
 root.render(
   <React.StrictMode>
-    <App />
+    <TarotCardProvider>
+      <App />
+    </TarotCardProvider>
   </React.StrictMode>
 );
 

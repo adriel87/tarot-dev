@@ -71,6 +71,7 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-icons-highlihht: #7f5af0;
   --ion-color-icons-secondary: #72757e;
   --ion-color-icons-tertiary: #2cb67d;
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -229,5 +230,8 @@ http://ionicframework.com/docs/theming/ */
     --ion-tab-bar-background: #1f1f1f;
 
     --ion-card-background: #1e1e1e;
+
+    --ion-list-background: #1e1e1e;
+    
   }
 }

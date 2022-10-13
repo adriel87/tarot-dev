@@ -40,7 +40,7 @@ const TellFortune : React.FC = () => {
     
     <>
     {
-      iNeedFive.current <= 5
+      iNeedFive.current <= 3
        ?    <div className="container">      
        <IonText>
          <div>

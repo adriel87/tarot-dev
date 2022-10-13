@@ -1,13 +1,11 @@
 
-import { useContext } from 'react';
+import TarotCardList from '../tarorCardList/TarotCardList';
 import './ShowFortune.css';
 
 
 const ShowFortune : React.FC = () => {
   return (
-    <div className="container">
-        <p>holi</p>
-    </div>
+    <TarotCardList />
   );
 };
 

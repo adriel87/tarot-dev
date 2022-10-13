@@ -3,5 +3,16 @@ export interface tarotCard{
     url: string,
     description: string
     invertedDescription: string,
-    isInverted:boolean,
+    love:{
+        normal:string,
+        inverted:string
+    },
+    luck:{
+        normal:string,
+        inverted:string
+    },
+    deploy:{
+        normal:string,
+        inverted:string
+    }
 }
