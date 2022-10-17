@@ -10,17 +10,16 @@ interface Props {
 
 const TarotCard : React.FC<Props> = ({tarotCard,type}) => {
   const isInverted = Math.random() > 0.5
-
   let description = '' 
   switch (type) {
     case 'love':
-      description = isInverted ? tarotCard[type].inverted : tarotCard[type].normal
+      description = isInverted ? tarotCard[type].inverted : tarotCard[type]?.normal
       break;
     case 'luck':
-      description = isInverted ? tarotCard[type].inverted : tarotCard[type].normal
+      description = isInverted ? tarotCard[type].inverted : tarotCard[type]?.normal
       break;
     case 'deploy':
-      description = isInverted ? tarotCard[type].inverted : tarotCard[type].normal
+      description = isInverted ? tarotCard[type].inverted : tarotCard[type]?.normal
       break
     default:
       break;
@@ -38,13 +37,13 @@ const TarotCard : React.FC<Props> = ({tarotCard,type}) => {
               </IonCardHeader>
 
               <IonCardContent>
-                  <IonImg src={ tarotCard.url } className={isInverted ? 'image-inverted': ''}/>
+                  <IonImg src={ tarotCard?.url } className={isInverted ? 'image-inverted': ''}/>
               </IonCardContent>
           </IonCard>
         </IonItem>
         <div className='ion-padding' slot='content'>
           <h2 className='h2-card'>{ tarotCard?.name}</h2>
-          <p className='p-card'>{description}</p>
+          <p className='p-card'>{ description }</p>
         </div>
       </IonAccordion>
     </IonAccordionGroup>

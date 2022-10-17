@@ -6,7 +6,7 @@ import { User } from '../../interfaces'
 interface ContextProps{
     // properties
     isLogged:boolean,
-    user ?: User | null,
+    user : User | null,
 
     // methods
     login : ()=> void,
