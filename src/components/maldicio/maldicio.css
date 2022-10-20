@@ -1,0 +1,34 @@
+.title-maldicio{
+    font-size: 30px;
+    color: var(--ion-color-primary-contrast);
+}
+
+.ctn-maldicio{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.text-maldicio{
+    width: 30%;
+    font-size: 16px;
+}
+
+.btn-maldicion{
+    font-size: 50px;
+}
+
+.input-maldicio{
+    background-color: transparent;
+}
+
+.item-maldicio{
+    background-color: rgb(var(--ion-color-secondary-rgb),0.3);
+}
+.item-maldicio2{
+    background-color: rgb(var(--ion-color-secondary-rgb),0.3);
+}
+
+.item-native{
+
+}

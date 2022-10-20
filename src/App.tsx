@@ -1,6 +1,5 @@
 import {
   IonApp,
-  IonButton,
   setupIonicReact
 } from '@ionic/react';
 
@@ -23,8 +22,10 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+
+import { defineCustomElements } from '@ionic/pwa-elements/loader'
 import Routes from './routes/Routes';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from './contexts/auth';
 import Login from './components/login/Login';
 
@@ -33,7 +34,7 @@ setupIonicReact();
 const App: React.FC = () => {
 
 
-const {isLogged,login} =useContext(AuthContext)
+const { isLogged } =useContext(AuthContext)
   
   return (
 
@@ -52,6 +53,7 @@ const {isLogged,login} =useContext(AuthContext)
 
 
 
+defineCustomElements(window)
 
 
 export default App;

@@ -15,8 +15,6 @@ const TellFortune : React.FC = () => {
     const [orientation, setOrientation] = useState<null| any>(null)
     useEffect(()=>{
       Motion.addListener('accel', event => {
-        console.log(event);
-        
         setOrientation({
           result: event.acceleration,
           rotatitionResult:event.rotationRate
