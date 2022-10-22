@@ -23,12 +23,15 @@
 }
 
 .item-maldicio{
+
     background-color: rgb(var(--ion-color-secondary-rgb),0.3);
 }
-.item-maldicio2{
-    background-color: rgb(var(--ion-color-secondary-rgb),0.3);
-}
+
 
 .item-native{
+    
+}
 
+.label-maldicio{
+    background-color: transparent;
 }
