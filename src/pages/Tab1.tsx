@@ -10,9 +10,9 @@ const Tab1: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent>
+      {/* <IonContent> */}
         <TellFortune/>
-      </IonContent>
+      {/* </IonContent> */}
     </IonPage>
   );
 };

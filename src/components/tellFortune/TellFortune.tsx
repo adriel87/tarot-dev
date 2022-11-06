@@ -12,8 +12,10 @@ const TellFortune : React.FC = () => {
 
     const [ isButtonPress, setIsButtonPress ] = useState(false)
     
-    const [orientation, setOrientation] = useState<null| any>(null)
+    const [ orientation, setOrientation ] = useState<null| any>(null)
+
     useEffect(()=>{
+
       Motion.addListener('accel', event => {
         setOrientation({
           result: event.acceleration,
@@ -21,9 +23,8 @@ const TellFortune : React.FC = () => {
         })
       })
 
-
-
       return () => { Motion.removeAllListeners() }
+
     },[])
 
   
@@ -33,40 +34,10 @@ const TellFortune : React.FC = () => {
 
     }
 
-    // web version
-
-    // const intervalId = useRef<string | number | NodeJS.Timeout | undefined>()
-
-    // const iNeedFive = useRef(0)
-
-
-
-    // const handleOnMouseDown = () => {
-    //     setIsButtonPress(true)
-    //     intervalId.current = setInterval(()=>{
-    //       iNeedFive.current++
-    //     },1000)
-    // }
-
-
-    // const handleOnMouseUp = () => {
-    //     setIsButtonPress(false)
-    //     clearInterval(intervalId.current)
-    // }
-    // const handleOnMouseLeave = () => {
-    //     if (isButtonPress) {
-    //         setIsButtonPress(false)
-    //         clearInterval(intervalId.current);
-    //     }       
-    // }
-
-
-    
-  return (
+    return (
     
     <>
     {
-      // iNeedFive.current <= 3
       !isButtonPress
        ?    <div className="container">      
        <IonText>
@@ -80,10 +51,7 @@ const TellFortune : React.FC = () => {
          </div>
        </IonText>
        <IonButton 
-           className='button' 
-          //  onMouseDown={handleOnMouseDown} 
-          //  onMouseUp={handleOnMouseUp}
-          //  onMouseLeave={handleOnMouseLeave}
+          className='button' 
           onClick={()=>{setIsButtonPress(true)}}
            >
          <IonIcon className='icon' icon={fingerPrint}></IonIcon>
@@ -91,7 +59,6 @@ const TellFortune : React.FC = () => {
    </div>
 
         : <ShowFortune/>
-        // : <h1>hola</h1>
       
     }
     </>

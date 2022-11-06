@@ -1,18 +1,18 @@
 
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonInput, IonItem, IonLabel, IonList, IonText } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle,  IonContent,  IonInput, IonItem, IonLabel, IonList } from '@ionic/react';
 import { Camera, CameraResultType, Photo } from '@capacitor/camera'
 import './maldicio.css';
-import { useState } from 'react';
-import { image } from 'ionicons/icons';
-import { tarotCard } from '../../interfaces';
+import { useContext, useEffect, useState } from 'react';
+import { RequestOptions } from 'http';
+import { Post } from '../../utils';
+import { AuthContext } from '../../contexts/auth';
+
 
 
 
 
 interface formTarotCard{
     name:'',
-    description:'',
-    invertedDescription:'',
     deploy:{
         normal:'',
         inverted:''
@@ -29,8 +29,6 @@ interface formTarotCard{
 
 const initState : formTarotCard={
     name:'',
-    description:'',
-    invertedDescription:'',
     deploy:{
         normal:'',
         inverted:''
@@ -50,6 +48,34 @@ const Maldicio : React.FC = () => {
 
     const [cameraPhoto, setCameraPhoto] = useState<Photo>()
     const [tarotForm, setTarotForm] = useState<formTarotCard>(initState)
+    const [showButton, setShowButton] = useState<boolean>(false)
+    const { user, bearer } = useContext(AuthContext)
+
+    
+    useEffect(()=>{
+        if (isValidForm()) {
+            setShowButton(true)
+        }
+    },[tarotForm, cameraPhoto])
+
+    const isValidForm = () :boolean =>{
+        const { deploy,love,luck,name } = tarotForm
+
+        if (!name) return false
+           
+        if (!love.normal ) return false
+        if (!love.inverted) return false
+        
+        if (!luck.normal ) return false
+        if (!luck.inverted) return false
+
+        if (!deploy.normal ) return false
+        if (!deploy.inverted) return false
+
+        if (!cameraPhoto?.webPath) return false
+        
+        return true
+    }
 
     const takePicture =async () => {
         try {
@@ -78,20 +104,6 @@ const Maldicio : React.FC = () => {
                 })
                 break;
 
-            case 'description':
-            setTarotForm({
-                ...tarotForm,
-                [id]:value
-            })
-                break;
-
-            case 'invertedDescription':
-            setTarotForm({
-                ...tarotForm,
-                [id]:value
-            })
-                break;
-
             case 'love':
                 setTarotForm({
                     ...tarotForm,
@@ -116,7 +128,7 @@ const Maldicio : React.FC = () => {
                 setTarotForm({
                     ...tarotForm,
                     luck:{
-                        ...tarotForm.love,
+                        ...tarotForm.luck,
                         normal:value,
                     }
                 })
@@ -126,7 +138,7 @@ const Maldicio : React.FC = () => {
                 setTarotForm({
                     ...tarotForm,
                     luck:{
-                        ...tarotForm.love,
+                        ...tarotForm.luck,
                         inverted:value,
                     }
                 })
@@ -136,7 +148,7 @@ const Maldicio : React.FC = () => {
                 setTarotForm({
                     ...tarotForm,
                     deploy:{
-                        ...tarotForm.love,
+                        ...tarotForm.deploy,
                         normal:value,
                     }
                 })
@@ -146,35 +158,95 @@ const Maldicio : React.FC = () => {
                 setTarotForm({
                     ...tarotForm,
                     deploy:{
-                        ...tarotForm.love,
+                        ...tarotForm.deploy,
                         inverted:value,
                     }
                 })
                 break;
-
-            default:
-                break;
-
-        }
+                
+                default:
+                    break;
+                    
+                }
+                
+            }
+            
+            const handleSendNewCard = async () =>{
+                console.log('kljhjashdfhkjhdfas');
+                const formdata = new FormData()
+                
+                const blobResponse = await fetch(cameraPhoto?.webPath as string)
+        const photo = await blobResponse.blob()
         
-    }
-    
-    const handleSendNewCard = async () =>{
-        // TODO send new card to back
+        // TODO cambiar holita por nombre de usuario
+        formdata.append('file', photo, user?.name )
 
+
+
+        formdata.append('name', tarotForm.name)
+        formdata.append('love', tarotForm.love.normal)
+        formdata.append('ilove', tarotForm.love.inverted)
+        formdata.append('luck', tarotForm.luck.normal)
+        formdata.append('iluck', tarotForm.luck.inverted)
+        formdata.append('deploy', tarotForm.deploy.normal)
+        formdata.append('ideploy', tarotForm.deploy.inverted)
+        formdata.append('createdAt', new Date().toString())
+        formdata.append('userEmail', user?.name as string)
+        const myHeaders = new Headers()
+        myHeaders.append("Authorization", `Bearer ${bearer}`)
+        
+
+        const requestOptions = {
+            body: formdata,
+            headers: myHeaders
+        }
+
+        // TODO hacer metodo fetch en Utils
+        //    const response = await fetch('http://localhost:7127/api/tarotCard', requestOptions)
+            
+           Post('http://localhost:7127/api/tarotCard', requestOptions);
+
+           
+           
+        
         // 
     }
+
+    const prepareCardToSend = () => {
+        
+        const formdata = new FormData()
+
+        // const tarotCardBlob = new Blob([JSON.stringify(tarotForm)])
+        formdata.append('file', cameraPhoto?.webPath as string , tarotForm.name )
+
+        formdata.append('name', tarotForm.name)
+        formdata.append('love', tarotForm.love.normal)
+        formdata.append('ilove', tarotForm.love.inverted)
+        formdata.append('luck', tarotForm.luck.normal)
+        formdata.append('iluck', tarotForm.luck.inverted)
+        formdata.append('deploy', tarotForm.deploy.normal)
+        formdata.append('ideploy', tarotForm.deploy.inverted)
+        
+        return formdata;
+    }
+    
   return (
   <>
+  <IonContent color="dark">
         <IonCard>
             <IonCardHeader>
                 <IonCardTitle className='title-maldicio'>Crea tu Carta</IonCardTitle>
             </IonCardHeader>
             <IonCardContent className='ctn-maldicio'>
                 <div className='text-maldicio'>
-                    Elige Algo de tu entorno
+                    
+                    {
+                        cameraPhoto?.webPath 
+                            ? <span>🌚 📸 🌝</span>
+                            : <h3>Elige Algo de tu entorno</h3>
+                    }   
                 </div> 
-                <IonButton className='btn-maldicion' onClick={takePicture}>🔎</IonButton>
+                <IonButton className={`btn-maldicion ${cameraPhoto?.webPath && 'ocultist'}`} onClick={takePicture}>🔎</IonButton>
             </IonCardContent>
 
     
@@ -191,28 +263,7 @@ const Maldicio : React.FC = () => {
                         color="primary"
                         ></IonInput>
                 </IonItem>
-                <IonItem color='vayaShit'>
-                    <IonLabel className='label-maldicio' position='floating' color='success'>
-                        <span className='label-maldicio '>description</span>
-                    </IonLabel>
-                    <IonInput 
-                        id='description'
-                        onIonChange={(e)=>handleChange(e)} 
-                        color="success"
-                        ></IonInput>
-                </IonItem>
-                <IonItem color='vayaShit' className='item-maldicio'>
-                    <IonLabel className='label-maldicio' position='floating' color='primary'>
-                        <span className='label-maldicio'>inverted description</span>
-                    </IonLabel>
-                    <IonInput 
-                        id='invertedDescription'
-                        onIonChange={(e)=>handleChange(e)} 
-                        className='input-maldicio' 
-                        color="primary" 
-                        value={tarotForm.invertedDescription}
-                        ></IonInput>
-                </IonItem>
+                
                 <IonItem color='vayaShit'>
                     <IonLabel className='label-maldicio' position='floating' color='success'>
                         <span className='label-maldicio'>love</span>
@@ -278,8 +329,13 @@ const Maldicio : React.FC = () => {
                 </IonItem>
             </IonList>
         </IonCard>
+  </IonContent>
+        <IonButton onClick={handleSendNewCard} className='btn-send-maldicio' disabled={!showButton} expand='full'>😈Enviemos tu carta😈</IonButton>
+        
   </>
   );
 };
 
 export default Maldicio;
+
+

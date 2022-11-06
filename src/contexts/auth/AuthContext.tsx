@@ -7,9 +7,11 @@ interface ContextProps{
     // properties
     isLogged:boolean,
     user : User | null,
+    bearer: string | null;
 
     // methods
-    login : ()=> void,
+    login : (email : string)=> void,
+    setBearer: (bearer :string)=> void
 }
 
 

@@ -1,17 +1,16 @@
-import { IonButton, IonPage } from '@ionic/react';
-import { useContext } from 'react';
-import { TarotCardContext } from '../contexts/tarotCard';
+import { IonPage, IonText } from '@ionic/react';
 import './Tab3.css';
 
 const Tab3: React.FC = () => {
 
-  const { initCards } = useContext(TarotCardContext)
+  // const [test, setTest] = useState<any|null>(null)
+  // const setData = async ()=>  setTest(await Get('https://pokeapi.co/api/v2/pokemon/ditto'))
 
   return (
     <IonPage>
-      <IonButton onClick={ initCards }>
-        pulsame
-      </IonButton>
+      <IonText color="primary">
+      hacer lista de nuevas cartas a votar  
+      </IonText>
     </IonPage>
   );
 };
