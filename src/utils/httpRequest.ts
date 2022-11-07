@@ -10,7 +10,6 @@ interface postData {
 }
 
 export const Post = async (url: string, { headers, body }:postData) => {
-    console.log('holi');
     
     const requestConfig = {
         method: "POST",
@@ -20,8 +19,7 @@ export const Post = async (url: string, { headers, body }:postData) => {
 
     const response = await fetch(url, requestConfig)
     
-    const data = await response.json()
     
-    return data;
+    return response;
 
 }

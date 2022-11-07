@@ -54,9 +54,9 @@ const Login : React.FC = () => {
         
 
         if(response.status===200){
-          const { Bearer } = await response.json()
+          const { Bearer , User} = await response.json()
           setBearer(Bearer)
-          login(userCredential.email)
+          login(User)
         }else{
           setErrorMessage(true)
           
@@ -82,9 +82,9 @@ const Login : React.FC = () => {
         if(response.status!==201){
           setErrorMessage(true)
         }else{
-          const { Bearer } = await response.json()
+          const { Bearer, User } = await response.json()
           setBearer(Bearer)
-          login(userCredential.email)
+          login(User)
         }
         
         setIsLoading(false)

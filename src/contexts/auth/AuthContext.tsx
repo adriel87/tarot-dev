@@ -10,8 +10,10 @@ interface ContextProps{
     bearer: string | null;
 
     // methods
-    login : (email : string)=> void,
-    setBearer: (bearer :string)=> void
+    login : (response : any)=> void,
+    setBearer: (bearer :string)=> void,
+    sendVote: ()=>void,
+    sendTarotCard: () => void
 }
 
 

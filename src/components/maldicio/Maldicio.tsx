@@ -49,7 +49,7 @@ const Maldicio : React.FC = () => {
     const [cameraPhoto, setCameraPhoto] = useState<Photo>()
     const [tarotForm, setTarotForm] = useState<formTarotCard>(initState)
     const [showButton, setShowButton] = useState<boolean>(false)
-    const { user, bearer } = useContext(AuthContext)
+    const { user, bearer, sendTarotCard } = useContext(AuthContext)
 
     
     useEffect(()=>{
@@ -171,18 +171,12 @@ const Maldicio : React.FC = () => {
                 
             }
             
-            const handleSendNewCard = async () =>{
-                console.log('kljhjashdfhkjhdfas');
-                const formdata = new FormData()
-                
-                const blobResponse = await fetch(cameraPhoto?.webPath as string)
+    const handleSendNewCard = async () =>{
+        const formdata = new FormData()
+        const blobResponse = await fetch(cameraPhoto?.webPath as string)
         const photo = await blobResponse.blob()
         
-        // TODO cambiar holita por nombre de usuario
         formdata.append('file', photo, user?.name )
-
-
-
         formdata.append('name', tarotForm.name)
         formdata.append('love', tarotForm.love.normal)
         formdata.append('ilove', tarotForm.love.inverted)
@@ -192,6 +186,8 @@ const Maldicio : React.FC = () => {
         formdata.append('ideploy', tarotForm.deploy.inverted)
         formdata.append('createdAt', new Date().toString())
         formdata.append('userEmail', user?.name as string)
+
+
         const myHeaders = new Headers()
         myHeaders.append("Authorization", `Bearer ${bearer}`)
         
@@ -204,8 +200,12 @@ const Maldicio : React.FC = () => {
         // TODO hacer metodo fetch en Utils
         //    const response = await fetch('http://localhost:7127/api/tarotCard', requestOptions)
             
-           Post('http://localhost:7127/api/tarotCard', requestOptions);
+        const response = await Post('http://localhost:7127/api/tarotCard', requestOptions);
 
+
+        if (response.status === 200) {
+            sendTarotCard()
+        }
            
            
         

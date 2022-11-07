@@ -46,9 +46,7 @@ const TellFortune : React.FC = () => {
            <h1>😇 esta echada 😇</h1>
            <h2>solo pulsa el botón</h2>
            <h2>y transfiere tu alma</h2>
-           <h2>{orientation?.rotatitionResult?.alpha ? orientation?.rotatitionResult?.alpha :" lakjds;"}1</h2>
-           <h2>{orientation?.result?.x ? orientation?.result?.x :"cilo"  }2</h2>
-         </div>
+                    </div>
        </IonText>
        <IonButton 
           className='button' 

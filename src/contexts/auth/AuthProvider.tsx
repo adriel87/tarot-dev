@@ -25,20 +25,26 @@ export const AuthProvider : FC<Props> = ({children}) =>{
     
     const [state, dispatch] = useReducer( authReducer ,AUTH_CARD_INITIAL_STATE)
 
-    const login = (email: string)=>{
-        console.log(email);
-        dispatch({type:'Auth - login', payload:{name:email, role:'user'}})
+    const login = (user: any)=>{
+        
+        dispatch({type:'Auth - login', payload: user})
     }
 
     const setBearer = (bearer: string)=>{
         dispatch({type:'Auth - Set Bearer', payload : bearer})
     }
+
+    const sendVote = ()=> dispatch({type:'Auth - Vote Card'})
+
+    const sendTarotCard = () => dispatch({type: 'Auth - Send Card'})
     return (
         <AuthContext.Provider value={
             {
                 ...state,
                 login,
-                setBearer
+                setBearer,
+                sendVote,
+                sendTarotCard
             }
         }>
             {children}
