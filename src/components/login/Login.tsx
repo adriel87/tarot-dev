@@ -1,13 +1,8 @@
-
-
 import { IonButton, IonCard, IonIcon, IonInput, IonLabel, IonNote, IonSpinner } from '@ionic/react';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../contexts/auth';
 import { eye, logoSnapchat } from 'ionicons/icons'
 import './login.css';
-import { Post } from '../../utils';
-
-
 interface UserCredential{
   email: string,
   password: string,

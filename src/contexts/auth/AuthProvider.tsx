@@ -30,6 +30,8 @@ export const AuthProvider : FC<Props> = ({children}) =>{
         dispatch({type:'Auth - login', payload: user})
     }
 
+    const logout = () => dispatch({type:'Auth - logout'})
+
     const setBearer = (bearer: string)=>{
         dispatch({type:'Auth - Set Bearer', payload : bearer})
     }
@@ -44,7 +46,8 @@ export const AuthProvider : FC<Props> = ({children}) =>{
                 login,
                 setBearer,
                 sendVote,
-                sendTarotCard
+                sendTarotCard,
+                logout
             }
         }>
             {children}

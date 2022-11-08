@@ -11,6 +11,7 @@ interface ContextProps{
 
     // methods
     login : (response : any)=> void,
+    logout : ()=> void,
     setBearer: (bearer :string)=> void,
     sendVote: ()=>void,
     sendTarotCard: () => void

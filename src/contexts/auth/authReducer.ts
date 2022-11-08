@@ -23,7 +23,8 @@ export const authReducer = (state: AuthState, action: authTypes):AuthState =>{
             return{
                 ...state,
                 isLogged:false,
-                user: null
+                user: null,
+                bearer: '',
             }
         case 'Auth - Set Bearer':
             return{

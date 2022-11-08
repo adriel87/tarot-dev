@@ -5,9 +5,9 @@ import './tarotCard.css';
 
 interface Props {
   tarotCard: tarotCard,
-  type: string
+  type?: string
 }
-
+// TODO version for esoteric
 const TarotCard : React.FC<Props> = ({tarotCard,type}) => {
   const isInverted = Math.random() > 0.5
   let description = '' 
@@ -24,20 +24,22 @@ const TarotCard : React.FC<Props> = ({tarotCard,type}) => {
     default:
       break;
   }
-  const defaultURL = 'https://res.cloudinary.com/dctd9sqdg/image/upload/v1665591890/evil-pc_ke0pny.png'
   return (
     <IonAccordionGroup expand="inset">
       <IonAccordion value='first'>
         <IonItem slot="header"  color="dark">
           <IonCard button className='card'>
-              <IonCardHeader>
-                  <IonCardSubtitle>
-                      {type}
-                  </IonCardSubtitle>
-              </IonCardHeader>
+            {
+              type &&
+                <IonCardHeader>
+                    <IonCardSubtitle>
+                        {type}
+                    </IonCardSubtitle>
+                </IonCardHeader>
+            }
 
               <IonCardContent>
-                  <IonImg src={ tarotCard?.url } className={isInverted ? 'image-inverted': ''}/>
+                  <IonImg src={ tarotCard?.image } className={isInverted ? 'image-inverted': ''}/>
               </IonCardContent>
           </IonCard>
         </IonItem>

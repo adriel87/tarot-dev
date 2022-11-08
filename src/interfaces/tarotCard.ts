@@ -5,10 +5,11 @@ interface Descriptions{
 }
 export interface tarotCard{
     name:string,
-    url: string,
-    description: string
-    invertedDescription: string,
-    love: Descriptions
-    luck: Descriptions
-    deploy: Descriptions
+    image: string,
+    userEmail:string,
+    isPermanentCard: boolean,
+    love: Descriptions,
+    luck: Descriptions,
+    deploy: Descriptions,
+    createdAt:string
 }

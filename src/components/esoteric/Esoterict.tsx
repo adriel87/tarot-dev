@@ -1,20 +1,33 @@
 
+import { IonButton, IonCard, IonCardHeader, IonCardTitle, IonContent } from '@ionic/react';
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/auth';
+import { TarotCardContext } from '../../contexts/tarotCard';
+import TarotCard from '../tarotCard/TarotCard';
 import './esoterict.css';
 
 
 const Esoterict : React.FC = () => {
 
-    const { user, sendVote } = useContext(AuthContext)
+    const { user, sendVote, logout } = useContext(AuthContext)
+    const { tarotCardsToVote } = useContext(TarotCardContext)
 
     // TODO hacer un use effect para traerte las cartas si
 
   return (
-    <div className="container">
-        <h1>aqui va la lista de las cartas para votar</h1>
-        <h1>incluir boton de logout</h1>
-    </div>
+    <IonContent color={'dark'}>
+      <IonCard>
+        <IonCardHeader>
+          <IonCardTitle className='title-esoteric' color={'light'} >
+          💜 Vota tu carta 💜
+          </IonCardTitle>
+        </IonCardHeader>
+      </IonCard>
+        {
+          tarotCardsToVote.map(card=> <TarotCard tarotCard={card} key={card.name.toString()}/>)
+        }
+        <IonButton onClick={logout} color='danger' className={'btn-logout'}>pa fuera</IonButton>
+    </IonContent>
   );
 };
 

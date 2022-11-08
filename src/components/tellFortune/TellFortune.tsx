@@ -1,38 +1,14 @@
 
-import { Motion, RotationRate } from '@capacitor/motion'
 import { IonText, IonButton, IonIcon } from '@ionic/react';
 import { fingerPrint } from 'ionicons/icons';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import ShowFortune from '../showFortune/ShowFortune';
 import './TellFortune.css';
-
-
 
 const TellFortune : React.FC = () => {
 
     const [ isButtonPress, setIsButtonPress ] = useState(false)
-    
-    const [ orientation, setOrientation ] = useState<null| any>(null)
 
-    useEffect(()=>{
-
-      Motion.addListener('accel', event => {
-        setOrientation({
-          result: event.acceleration,
-          rotatitionResult:event.rotationRate
-        })
-      })
-
-      return () => { Motion.removeAllListeners() }
-
-    },[])
-
-  
-    const permissionRequired = async ()=>{
-    
-      
-
-    }
 
     return (
     

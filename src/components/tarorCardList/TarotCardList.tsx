@@ -10,15 +10,15 @@ import { fortuneTypes } from '../../enums';
 
 const TarotCardList : React.FC = () => {
 
-const { tarotCards } = useContext(TarotCardContext)
+const { tarotDeck } = useContext(TarotCardContext)
 
-const randomCards = getThreeRandomNumberArray(tarotCards.length)
+const randomCards = getThreeRandomNumberArray(tarotDeck.length)
 
 
   return (
     <IonList>
         {
-          randomCards.map((card, index)=> <TarotCard  tarotCard={tarotCards[card]} type={fortuneTypes[index]} key={index}/>)
+          randomCards.map((card, index)=> <TarotCard  tarotCard={tarotDeck[card]} type={fortuneTypes[index]} key={index}/>)
         }
     </IonList>
   );

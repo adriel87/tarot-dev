@@ -1,0 +1,13 @@
+.container{
+    text-align: center;
+}
+
+.text-label{
+    margin: auto;
+    background-color: transparent;
+    font-size: 30px;
+}
+
+.icon-label{
+    font-size: 50px;
+}

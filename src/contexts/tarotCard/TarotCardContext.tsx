@@ -6,7 +6,8 @@ import { tarotCard } from '../../interfaces';
 
 interface ContextProps{
     // properties
-    tarotCards: tarotCard[],
+    tarotDeck: tarotCard[],
+    tarotCardsToVote: tarotCard[]
 
     // methods
     initCards: ()=>void,

@@ -3,14 +3,8 @@ import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle,  IonCo
 import { Camera, CameraResultType, Photo } from '@capacitor/camera'
 import './maldicio.css';
 import { useContext, useEffect, useState } from 'react';
-import { RequestOptions } from 'http';
 import { Post } from '../../utils';
 import { AuthContext } from '../../contexts/auth';
-
-
-
-
-
 interface formTarotCard{
     name:'',
     deploy:{
@@ -204,30 +198,16 @@ const Maldicio : React.FC = () => {
 
 
         if (response.status === 200) {
+            const updateState = await fetch(`http://localhost:7127/api/user/${user?.id}/cardSend`, {method: 'PUT'})
+
+            console.log(updateState);
+            
             sendTarotCard()
+            
         }
-           
-           
-        
-        // 
-    }
 
-    const prepareCardToSend = () => {
-        
-        const formdata = new FormData()
 
-        // const tarotCardBlob = new Blob([JSON.stringify(tarotForm)])
-        formdata.append('file', cameraPhoto?.webPath as string , tarotForm.name )
 
-        formdata.append('name', tarotForm.name)
-        formdata.append('love', tarotForm.love.normal)
-        formdata.append('ilove', tarotForm.love.inverted)
-        formdata.append('luck', tarotForm.luck.normal)
-        formdata.append('iluck', tarotForm.luck.inverted)
-        formdata.append('deploy', tarotForm.deploy.normal)
-        formdata.append('ideploy', tarotForm.deploy.inverted)
-        
-        return formdata;
     }
     
   return (
