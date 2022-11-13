@@ -1,100 +1,106 @@
-TODO UPDATE WHIT THE ACTUAL APP
+# 🔮 Tarot Dev 🔮
 
-# CosasApp
+With Tarot dev you can kwon what is your today fortune in :
 
-El fin de este proyecto al menos en mi caso es aprender a usar un framework para crear una app multiplataforma como es IONIC. Este framework a su vez usa otro framework por debajo como Angular, aunque es posible usarlo con otras tecnologias. Asi que mis 3 objetivos son :
+- 💜    love    💜
+- 🤞    luck    🤞
+- 🖥️    deploy  🖥️
 
-1. realizar la app solicitada en el ejercicio
-2. salir de mi zona de confort y aprender algo nuevo, al menos ver como funciona
-3. valorar la experiencia con las diferentes tecnologias y ver que me aporta
+Everyone knows that a developer depends on his fortune 
 
+## Starting 🚀
 
-En este proyecto vamos a realizar una aplicación que nos guarde nuestras cosas, por que ya hay aplicaciones muy especificas que guardan cosas muy especificas y esta sera de proposito 🦸 ULTRA GENERAL 🦸
+the project is build whit ionic, and for run it you need to do the next steps
 
+1. execute npm install
+2. ionic serve
+3. in your local press f12 and select a phone view in development tools
+4. test the aplication
 
+see how to complete the steps down
 
+### order to installation 📋
 
-## Comenzando 🚀
-
-Como ves el repositorio tiene 3 carpetas
-
-- frontend --> donde estara la app hecha con ionic
-- backend --> aqui montaremos nuestra api-Rest con node
-- postman --> archivos para que importes tantos el enviroment como la coleccion para probar en tu loca
-
-
-### Pre-requisitos 📋
-
-para tener funcional el proyecto debes tener en cuenta lo siguiente
-
-1. instalar node en su version LTS
-2. instalar dependencias de cada uno de los proyectos
-3. configurar variables de entorno para el back
-4. tener preparada tu base de datos, esta parte se define mejor en el readme del back
-5. importar la coleccion y variables de postman
+1. install node in your LTS version
+2. install dependencies
+5. run the scripts
 
 
-### Instalación 🔧
+### Steps installations 🔧
 
-1. Instalar node en su version LTS
+1. install node
 
-esto dependera de en que sistema operativo estes trabajando asi que te dejo el enlace aqui abajo
+go to the next link a follow the instruction in the node web
 
 ## [👉 NODE 👈](https://nodejs.org/es/)
 
 ---
 
-2. instalar dependencias
+2. install dependencies
 
-si no has trabajado nunca con node no te preocupes. Las dependencias en cualquier proyecto es como su nombre indica una entidad necesaria para que el proyecto funcione.
+if you never work whit node take it easy, node work whit a package manage like maven in Java or nuggets in .NET
 
-en node estas dependencias se llaman modulos y los modulos no es mas que un codigo que cumple una funcion determinada.
-
-para instalar esos modulos lo que necesitamos es instalarlos y para esto cuando instalamos node tambien istalamos npm, que para simplificar es un herramienta para gestionar modulos de node. [Si quieres mas info miralo 👀 aqui 👀](https://docs.npmjs.com/about-npm)
-
-❗ Al lio que lo de arriba es una chapa, mira el ejemplo abajo
+for the beggining open a terminal and execute the next command
 
 ```bash
-# primero colocate en la raiz del proyecto y luego lanza el siguiente comando
+npm i
+```
+> what does `npm i`
+>> launch a script, take a package json in root directory and read all dependencies, then dowload all dependencies and install in your proyect 
 
-~ npm install
 
-# esto instalara todas las dependcias que estan el package.json de la raiz del proyecto
+[👀 more about node package manager 👀](https://docs.npmjs.com/about-npm)
 
+
+3. launch Scripts
+
+***run in local***
+in Ionic projects usually we install `Ionic/cli` just a command line interface to launch script for ionic
+
+open a terminal again and type the next 
+
+```bash
+ionic serve
+```
+and then look how your project wake up in localhost, by default at the end of the script you see the url where the project is running press whit ctrl + click in terminal if you are in visual studio code or copy the link and paste in your favorite browser
+
+***Build aplication***
+
+the build is used if you want deploy your app in a server or if you need build a android or ios project
+
+```bash
+ionic build
 ```
 
-ahora bien hay peculiaridades mira las del :
+***android***
 
-## [back](./backend_tibur/readme.md)
-## [front](./front_tibur/cosas/readme.md)
+if you want to test the app in android
+
+1. install android estudio
+2. maybe you need to configure a enviroment variables to indicate where are android studio
+3. launch the next script whit ionic cli before `Build aplication`
+```bash
+ionic cap add android
+ionic cap open android
+```
+
+in package json you have a script to avoid the step 3 open your terminal and type
+
+```bash
+npm run android
+```
+> execute in order build , add android, open android
 
 
-## Pruebas de la api 🧪
-
-te dejo 2 caminos pero recuerda la base de datos de primera esta pelada asi que te recomiendo que primero lances un par de POST o en la coleccion `createCosa`
-
-- primera opcion, pincha aqui cuando tengas el back levantado. Luego podras pinchar sobre `view in collection` y te abrira una pestaña.
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/17204381-45f06cbc-a9a4-454e-ba3a-3f50059bc66c?action=collection%2Ffork&collection-url=entityId%3D17204381-45f06cbc-a9a4-454e-ba3a-3f50059bc66c%26entityType%3Dcollection%26workspaceId%3Da72a82a2-694e-44b1-b16f-f33fab87ebdb#?env%5BCosasEnviroment%5D=W3sia2V5IjoiQkFTSUNfUk9PVCIsInZhbHVlIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2FwaS9jb3NhIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL2Nvc2EiLCJzZXNzaW9uSW5kZXgiOjB9XQ==)
-
-- segunda opcion
-
-1. importa la coleccion y variables de postmant que estan en la carpeta postman
-2. lanza los endpoint, todos estan preparados para simplemente lanzarlos
 
 
 
 
-## Construido con 🛠️
+## build whit 🛠️
 
-### front
 - IONIC
-- angular
+- react
 
-### back
-- express
-- sequelize
-- cors
-- dotenv
 
 ## Autor ✒️
 
